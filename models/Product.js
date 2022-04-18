@@ -20,8 +20,8 @@ Product.init(
       allowNull: false
     },
     price: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
+      type:DataTypes.DECIMAL,
+      allowNull:false,
       validate: {
         isDecimal: true
       }
@@ -30,13 +30,15 @@ Product.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 10,
-      Validate: {
-        isNumeric: true
+      validate: {
+        isNumeric: true    
       }
     },
     category_id: {
       type: DataTypes.INTEGER,
-      references: {
+      // Quick patch. Allows deletion of category. 
+      allowNull: true, // If allowNull not set to true, you cant delete a category.
+      references: { // fk join category model on id
         model: 'category',
         key: 'id'
       }
